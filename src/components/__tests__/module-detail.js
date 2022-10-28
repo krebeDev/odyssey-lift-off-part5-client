@@ -1,6 +1,6 @@
-import React from 'react';
-import { render, cleanup } from '../../utils/test-utils';
-import ModuleDetail from '../module-detail';
+import React from 'react'
+import { render, cleanup } from '../../utils/test-utils'
+import ModuleDetail from '../module-detail'
 
 const mockModule = {
   id: 'l_1',
@@ -10,8 +10,8 @@ const mockModule = {
   thumbnail: null,
   videoUrl: 'https://youtu.be/dlKzlksOUtU',
   topic: 'Cat-stronomy',
-  length: 164,
-};
+  durationInSeconds: 164,
+}
 
 const mockParentTrack = {
   id: 'c_0',
@@ -31,16 +31,16 @@ const mockParentTrack = {
     {
       id: 'l_0',
       title: 'Exploring Time and Space',
-      length: 258,
+      durationInSeconds: 258,
     },
   ],
-};
+}
 
 describe('Module Detail View', () => {
   // automatically unmount and cleanup DOM after the test is finished.
-  afterEach(cleanup);
+  afterEach(cleanup)
 
   it('renders without error', () => {
-    render(<ModuleDetail module={mockModule} track={mockParentTrack} />);
-  });
-});
+    render(<ModuleDetail module={mockModule} track={mockParentTrack} />)
+  })
+})
