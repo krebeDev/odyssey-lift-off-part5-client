@@ -1,5 +1,5 @@
-import React from 'react';
-import styled from '@emotion/styled';
+import React from 'react'
+import styled from '@emotion/styled'
 import {
   colors,
   Button,
@@ -7,23 +7,32 @@ import {
   IconView,
   IconTime,
   IconBook,
-} from '../styles';
-import { humanReadableTimeFromSeconds } from '../utils/helpers';
-import { Link } from '@reach/router';
-import ContentSection from './content-section';
-import MarkDown from './md-content';
+} from '../styles'
+import { humanReadableTimeFromSeconds } from '../utils/helpers'
+import { Link } from '@reach/router'
+import ContentSection from './content-section'
+import MarkDown from './md-content'
 
 /**
  * Track Detail component renders the main content of a given track:
- * author, length, number of views, modules list, among other things.
+ * author, durationInSeconds, number of views, modules list, among other things.
  * It provides access to the first module of the track.
  */
 const TrackDetail = ({ track }) => {
-  const { title, description, thumbnail, author, length, modulesCount, modules, numberOfViews } = track;
+  const {
+    title,
+    description,
+    thumbnail,
+    author,
+    durationInSeconds,
+    modulesCount,
+    modules,
+    numberOfViews,
+  } = track
 
   return (
     <ContentSection>
-      <CoverImage src={thumbnail} alt="" />
+      <CoverImage src={thumbnail} alt='' />
       <TrackDetails>
         <DetailRow>
           <h1>{title}</h1>
@@ -32,16 +41,16 @@ const TrackDetail = ({ track }) => {
           <DetailItem>
             <h4>Track details</h4>
             <IconAndLabel>
-              <IconView width="16px" />
-              <div id="viewCount">{numberOfViews} view(s)</div>
+              <IconView width='16px' />
+              <div id='viewCount'>{numberOfViews} view(s)</div>
             </IconAndLabel>
             <IconAndLabel>
-              <IconBook width="14px" height="14px" />
+              <IconBook width='14px' height='14px' />
               <div>{modulesCount} modules</div>
             </IconAndLabel>
             <IconAndLabel>
-              <IconTime width="14px" />
-              <div>{humanReadableTimeFromSeconds(length)}</div>
+              <IconTime width='14px' />
+              <div>{humanReadableTimeFromSeconds(durationInSeconds)}</div>
             </IconAndLabel>
           </DetailItem>
           <DetailItem>
@@ -52,9 +61,9 @@ const TrackDetail = ({ track }) => {
           <div>
             <StyledLink to={`./module/${modules[0]['id']}`}>
               <Button
-                icon={<IconRun width="20px" />}
+                icon={<IconRun width='20px' />}
                 color={colors.pink.base}
-                size="large"
+                size='large'
               >
                 Start Track
               </Button>
@@ -68,7 +77,9 @@ const TrackDetail = ({ track }) => {
               {modules.map((module) => (
                 <li key={module.title}>
                   <div>{module.title}</div>
-                  <ModuleLength>{humanReadableTimeFromSeconds(module.length)}</ModuleLength>
+                  <ModuleLength>
+                    {humanReadableTimeFromSeconds(module.durationInSeconds)}
+                  </ModuleLength>
                 </li>
               ))}
             </ul>
@@ -77,10 +88,10 @@ const TrackDetail = ({ track }) => {
       </TrackDetails>
       <MarkDown content={description} />
     </ContentSection>
-  );
-};
+  )
+}
 
-export default TrackDetail;
+export default TrackDetail
 
 /** Track detail styled components */
 const CoverImage = styled.img({
@@ -88,12 +99,12 @@ const CoverImage = styled.img({
   maxHeight: 400,
   borderRadius: 4,
   marginBottom: 30,
-});
+})
 
 const StyledLink = styled(Link)({
   textDecoration: 'none',
   color: 'white',
-});
+})
 
 const TrackDetails = styled.div({
   display: 'flex',
@@ -114,7 +125,7 @@ const TrackDetails = styled.div({
     marginBottom: 5,
     color: colors.text,
   },
-});
+})
 
 const DetailRow = styled.div({
   display: 'flex',
@@ -125,7 +136,7 @@ const DetailRow = styled.div({
   paddingBottom: 20,
   marginBottom: 20,
   borderBottom: `solid 1px ${colors.silver.dark}`,
-});
+})
 
 const DetailItem = styled.div({
   display: 'flex',
@@ -134,7 +145,7 @@ const DetailItem = styled.div({
   justifyContent: 'space-between',
   color: colors.textSecondary,
   alignSelf: 'center',
-});
+})
 
 const AuthorImage = styled.img({
   height: 30,
@@ -142,12 +153,12 @@ const AuthorImage = styled.img({
   marginBottom: 8,
   borderRadius: '50%',
   objectFit: 'cover',
-});
+})
 
 const AuthorName = styled.div({
   lineHeight: '1em',
   fontSize: '1em',
-});
+})
 
 const IconAndLabel = styled.div({
   display: 'flex',
@@ -164,7 +175,7 @@ const IconAndLabel = styled.div({
   '#viewCount': {
     color: colors.pink.base,
   },
-});
+})
 
 const ModuleListContainer = styled.div({
   width: '100%',
@@ -180,9 +191,9 @@ const ModuleListContainer = styled.div({
       paddingBottom: 2,
     },
   },
-});
+})
 
 const ModuleLength = styled.div({
   marginLeft: 30,
   color: colors.grey.light,
-});
+})
